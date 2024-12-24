@@ -1,15 +1,78 @@
 # Byte-compiled files
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 
 # Virtual environments
 env/
 venv/
+ENV/
+env.bak/
+venv.bak/
 
 # System files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # Generated files
 logs/
 output/
+*.log
+*.out
+*.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# macOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Linux
+*~
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# JetBrains Rider
+.idea/
