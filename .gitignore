@@ -23,6 +23,7 @@ output/
 *.log
 *.out
 *.class
+config.*
 
 # Distribution / packaging
 build/

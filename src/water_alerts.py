@@ -35,6 +35,10 @@ if __name__ == "__main__":
             else:
                 processedValue_json['message'] = "No water outage"
                 MQTT_client.publish_to_mqtt(MQTT_TOPIC, json.dumps(processedValue_json))
+            
+            logging.info(f"Finished at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} =================")
+            sys.exit(0)
+
         else:
             logging.error("Error: processedValue_json is None")
             logging.info(f"Finished at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} =================")
