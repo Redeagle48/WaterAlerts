@@ -8,7 +8,14 @@ import sys
 from datetime import datetime
 import configurations_processor as configs
 
-logging.basicConfig(level=logging.INFO)
+# Configure logging
+log_file = "water_alerts.log"
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    handlers=[
+                        logging.FileHandler(log_file),
+                        logging.StreamHandler(sys.stdout)
+                    ])
 
 def log_and_exit(message, level="info", exit_code=0):
     log_message = f"{message}"
@@ -24,7 +31,7 @@ def log_and_exit(message, level="info", exit_code=0):
 if __name__ == "__main__":
 
     logging.info("##############################################")
-    logging.info(f"# Running at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    logging.info(f"Starting at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     try:
         logging.info("[Phase: scrape text]")
