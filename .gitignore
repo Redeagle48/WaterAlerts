@@ -52,7 +52,7 @@ coverage.xml
 .idea/
 
 # VS Code
-.vscode/
+#.vscode/
 
 # Jupyter Notebook
 .ipynb_checkpoints/
