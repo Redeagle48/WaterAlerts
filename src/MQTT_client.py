@@ -23,12 +23,12 @@ def publish_to_mqtt(topic, message):
     try:
         client.connect(mqtt_configs["broker"], mqtt_configs["port"], 60)
         client.loop_start()
-        #result = client.publish(topic, message)
-        #status = result.rc
-        #if status == mqtt.MQTT_ERR_SUCCESS:
-        #    logging.info(f"Sent `{message}` to topic `{topic}`")
-        #else:
-        #    logging.error(f"Failed to send message to topic {topic}")
+        result = client.publish(topic, message)
+        status = result.rc
+        if status == mqtt.MQTT_ERR_SUCCESS:
+            logging.info(f"Sent `{message}` to topic `{topic}`")
+        else:
+            logging.error(f"Failed to send message to topic {topic}")
     except Exception as e:
         logging.error(f"An error occurred: {e}")
     finally:
