@@ -2,12 +2,13 @@ import json
 import os
 import logging
 from openai import OpenAI
+import configurations_processor as configs
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
-
-# Replace with your OpenAI API key from environment variables
-API_KEY = os.getenv("OPENAI_API_KEY")
+configs = configs.get_openai_configs_as_json();
+API_KEY = configs["api_key"]
+MODEL = configs["model"]
 
 def generate_water_outage_info(newValue):
     """
@@ -27,7 +28,7 @@ def generate_water_outage_info(newValue):
 
     try:
         completion = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model = MODEL,
             messages=[
                 {"role": "system", "content": "You are a helpful assistant and will analyze a raw info about non programmed water issues."},
                 {"role": "user", "content": "Check if I have or will have a water issue in Vila de Rei/Bucelas, Portugal. Return as answer a JSON structure with attribute 'HasWaterOutage' with value true/false where true means water issue in Vila de Rei or Bucelas, otherwise false. If true, an attribute 'Message' of type text with a text containing pertinent info and, if possible, when it starts and when ends."},

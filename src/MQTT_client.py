@@ -17,11 +17,11 @@ def on_connect(client, userdata, flags, rc, properties=None):
 def publish_to_mqtt(topic, message):
 
     client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
-    client.username_pw_set(mqtt_configs["mqtt_user"], mqtt_configs["mqtt_password"])
+    client.username_pw_set(mqtt_configs["user"], mqtt_configs["password"])
     client.on_connect = on_connect
 
     try:
-        client.connect(mqtt_configs["mqtt_broker"], mqtt_configs["mqtt_port"], 60)
+        client.connect(mqtt_configs["broker"], mqtt_configs["port"], 60)
         client.loop_start()
         #result = client.publish(topic, message)
         #status = result.rc
