@@ -9,13 +9,13 @@ from datetime import datetime
 import configurations_processor as configs
 
 # Configure logging
-log_file = "water_alerts.log"
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     handlers=[
-                        logging.FileHandler(log_file),
                         logging.StreamHandler(sys.stdout)
                     ])
+
+APP_CONFIGS = configs.get_app_configs_as_json()
 
 def log_and_exit(message, level="info", exit_code=0):
     log_message = f"{message}"
@@ -48,13 +48,14 @@ if __name__ == "__main__":
         processedValue_json = openai_client.generate_water_outage_info(text)
 
         if processedValue_json is not None:
-            logging.info("[Phase: MQTT]")
-            MQTT_TOPIC = configs.get_mqtt_configs_as_json()["topic"]
-            if processedValue_json['HasWaterOutage']:
-                MQTT_client.publish_to_mqtt(MQTT_TOPIC, json.dumps(processedValue_json))
-            else:
-                processedValue_json['message'] = "No water outage"
-                MQTT_client.publish_to_mqtt(MQTT_TOPIC, json.dumps(processedValue_json))
+            if APP_CONFIGS["mqtt_publish"]:
+                logging.info("[Phase: MQTT]")
+                MQTT_TOPIC = configs.get_mqtt_configs_as_json()["topic"]
+                if processedValue_json['HasWaterOutage']:
+                    MQTT_client.publish_to_mqtt(MQTT_TOPIC, json.dumps(processedValue_json))
+                else:
+                    processedValue_json['message'] = "No water outage"
+                    MQTT_client.publish_to_mqtt(MQTT_TOPIC, json.dumps(processedValue_json))
             
             log_and_exit("Process completed successfully.", exit_code=0)
 

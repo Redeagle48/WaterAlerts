@@ -23,6 +23,9 @@ def get_mqtt_configs_as_json():
 def get_openai_configs_as_json():
     return get_configs("openai")
 
+def get_app_configs_as_json():
+    return get_configs("application")
+
 if __name__ == "__main__":
 
     out = get_configs("openai")
