@@ -61,7 +61,7 @@ Before you begin, ensure you have the following installed:
     ```toml
     [mqtt]
     broker = "<broker ip>" 
-    port = <broker port>
+    port = "<broker port>"
     user = "<mqtt user>"
     password = "<mqtt pass>"
     topic = "<mqtt topic>"
